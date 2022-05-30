@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "./Question.css";
 import Accordion from "@material-ui/core/Accordion";
-import { AccordionDetails, AccordionSummary, Select, Typography, MenuItem, FormControlLabel, Radio } from "@material-ui/core";
+import { AccordionDetails, AccordionSummary, Select, Typography, MenuItem, FormControlLabel, Radio, IconButton, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { CropOriginal, CheckBox, ViewHeadline, ShortText, ArrowDropDownCircle } from "@material-ui/icons";
+import { CropOriginal, CheckBox, ViewHeadline, ShortText, ArrowDropDownCircle, Close, FilterNone, MoreVert } from "@material-ui/icons";
+import { Switch } from "react-router-dom";
 
 export default function Question(){
     const [questions, setQuestion] = useState(
@@ -46,7 +47,7 @@ export default function Question(){
                     <div className="question_boxes">
                         <AccordionDetails className="add_questions">
                             <div className="add_question_top">
-                                <input type="text" className="question" placeholder="질문"></input>
+                                <input type="text" className="question" placeholder="질문" value={ques.questionText}></input>
                                 <CropOriginal style={{color:"gray"}}/>
                                 <Select className="select" style={{color:"gray", fontSize:"13px"}}>
                                     <MenuItem id="ShortText" value="Text"><ShortText style={{marginRight:"10px", color:"gray"}} checked/>단답형</MenuItem>
@@ -56,6 +57,42 @@ export default function Question(){
                                     <MenuItem id="radio" value="Radio"><ArrowDropDownCircle style={{marginRight:"10px", color:"gray"}} checked/>드롭다운</MenuItem>
                                 </Select>
                             </div>
+                            {ques.options.map((op, j) => (
+                                <div className="add_question_body" key={j}>
+                                    {
+                                        (ques.questionType!="Text") ?
+                                        <input type={ques.questionType} style={{marginRight:"10px"}}/> :
+                                        <ShortText style={{marginRight:"10px"}}/>
+                                    }
+                                    <div>
+                                        <input type="text" className="text_input" placeholder="option" value={ques.options[j].optionText}></input>
+                                    </div>
+
+                                    <CropOriginal style={{color : "gray"}}/>
+                                    <IconButton aria-label="delete">
+                                        <Close/>
+                                    </IconButton>
+                                </div>
+                            ))}
+                            <div className="add_footer">
+                               <div className="add_question_bottom_left">
+                        
+                               <Button size="small" style={{textTransform: 'none',color:"#4285f4",fontSize:"13px",fontWeight:"600"}}>       <ArrowDropDownCircle style={{border:"2px solid #4285f4", padding:"2px",marginRight:"8px"}} /> Answer key</Button>
+                                 
+                              </div>
+
+                                <div className="add_question_bottom">
+                                  
+                                    <IconButton aria-label="Copy">
+                                        <FilterNone/>
+                                    </IconButton>
+                                    
+                                    <IconButton aria-label="delete"/>
+                                    <IconButton>
+                                        <MoreVert/>
+                                    </IconButton>
+                                </div>
+                              </div>
                         </AccordionDetails>
                     </div>
             </Accordion>

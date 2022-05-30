@@ -77,6 +77,30 @@ body{
     margin-left: 10px;
 }
 
+.text_input{
+    outline:none;
+    border:none;
+    height:40px;
+    width:490px;
+    
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: .2px;
+    
+    color: #202124;
+}
+
+.text_input:focus{
+    border-bottom:1.5px solid rgb(103, 58, 183);
+
+}
+
+.add_question_body{
+    display:flex;
+    align-items: center;
+}
+
 .question{
     box-sizing: border-box;
     margin-top: 10px;
@@ -111,9 +135,25 @@ body{
     margin-right:10px;
     border:1.5px solid #F4F4F9;
     border-radius:3px;
-background:transparent;
+    background:transparent;
 }
 
 .menuitem{
     color: rgba(118, 118, 118, 0.3);
   }
+
+  .saved_questions
+{
+    background-color: white;
+
+    border-radius: 8px;
+    padding:20px 2px;
+    text-transform: capitalize;
+    display:flex;
+    flex-direction: column;
+}
+
+.add_footer{
+    display:flex;justify-content: space-between;
+}
+
